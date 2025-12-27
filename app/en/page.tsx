@@ -65,18 +65,16 @@ export default function EnglishHome() {
             <Hero dict={dict} />
             
             <section className={styles.downloadSection}>
-              {!result ? (
-                <DownloadForm
-                  dict={dict}
-                  isLoading={isLoading}
-                  error={error}
-                  onSubmit={handleDownload}
-                />
-              ) : (
+              <DownloadForm
+                dict={dict}
+                isLoading={isLoading}
+                error={error}
+                onSubmit={handleDownload}
+              />
+              {result && (
                 <Result
                   dict={dict}
                   result={result}
-                  onReset={handleReset}
                 />
               )}
             </section>

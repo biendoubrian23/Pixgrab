@@ -108,8 +108,10 @@ export default function Result({ dict, result }: ResultProps) {
         {result.type === 'image' ? (
           <img 
             src={result.thumbnailUrl || result.url} 
-            alt="Preview"
+            alt="Media preview - downloaded from social platform"
             className={styles.image}
+            loading="lazy"
+            decoding="async"
           />
         ) : (
           <video 
@@ -118,6 +120,7 @@ export default function Result({ dict, result }: ResultProps) {
             controls
             playsInline
             preload="metadata"
+            aria-label="Video preview"
           />
         )}
       </div>

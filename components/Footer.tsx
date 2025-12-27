@@ -11,9 +11,9 @@ export default function Footer({ dict }: FooterProps) {
   const copyright = dict.footer.copyright.replace('{year}', currentYear.toString());
 
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} role="contentinfo">
       <div className={`container ${styles.container}`}>
-        <nav className={styles.links}>
+        <nav className={styles.links} aria-label="Footer navigation">
           <Link href="/legal" className={styles.link}>
             {dict.footer.legal}
           </Link>

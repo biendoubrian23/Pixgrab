@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import GlobalSchemas from '@/components/GlobalSchemas';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://pixgrab.com'),
   title: {
     default: 'Pixgrab - Download Pinterest, Reddit & X Media',
     template: '%s | Pixgrab',
@@ -75,30 +77,6 @@ export const viewport: Viewport = {
   themeColor: '#1a1a1a',
 };
 
-function ServiceWorkerRegistration() {
-  return (
-    <script
-      suppressHydrationWarning
-      dangerouslySetInnerHTML={{
-        __html: `
-          if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-              navigator.serviceWorker.register('/sw.js').then(
-                function(registration) {
-                  console.log('SW registered: ', registration);
-                },
-                function(registrationError) {
-                  console.log('SW registration failed: ', registrationError);
-                }
-              );
-            });
-          }
-        `,
-      }}
-    />
-  );
-}
-
 export default function RootLayout({
   children,
 }: {
@@ -107,12 +85,40 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Preconnect pour performances */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://i.pinimg.com" />
+        <link rel="preconnect" href="https://v.redd.it" />
+        <link rel="preconnect" href="https://pbs.twimg.com" />
+        
+        {/* DNS prefetch pour CDNs */}
+        <link rel="dns-prefetch" href="https://i.pinimg.com" />
+        <link rel="dns-prefetch" href="https://v.redd.it" />
+        <link rel="dns-prefetch" href="https://video.twimg.com" />
+        
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').then(
+                    function(registration) {
+                      console.log('SW registered: ', registration);
+                    },
+                    function(registrationError) {
+                      console.log('SW registration failed: ', registrationError);
+                    }
+                  );
+                });
+              }
+            `,
+          }}
+        />
       </head>
       <body suppressHydrationWarning>
+        <GlobalSchemas />
         {children}
-        <ServiceWorkerRegistration />
       </body>
     </html>
   );

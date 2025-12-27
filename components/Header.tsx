@@ -12,15 +12,21 @@ interface HeaderProps {
 }
 
 const languages = [
-  { code: 'en', label: 'English', flag: '🇬🇧' },
-  { code: 'fr', label: 'Français', flag: '🇫🇷' },
+  { code: 'en', label: 'English', flag: 'GB' },
+  { code: 'fr', label: 'Français', flag: 'FR' },
 ];
 
 export default function Header({ dict, locale = 'en' }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   
   const currentLang = languages.find(l => l.code === locale) || languages[0];
+
+  // Éviter les erreurs d'hydration
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Fermer le dropdown quand on clique dehors
   useEffect(() => {
@@ -34,9 +40,9 @@ export default function Header({ dict, locale = 'en' }: HeaderProps) {
   }, []);
 
   return (
-    <header className={styles.header}>
+    <header className={styles.header} role="banner">
       <div className={`container ${styles.container}`}>
-        <Link href="/" className={styles.logo}>
+        <Link href="/" className={styles.logo} aria-label="Pixgrab - Home">
           <Image
             src="/logo.jpeg"
             alt="Pixgrab"
@@ -47,15 +53,15 @@ export default function Header({ dict, locale = 'en' }: HeaderProps) {
           />
         </Link>
         
-        <nav className={styles.nav}>
+        <nav className={styles.nav} role="navigation" aria-label="Main navigation">
           <div className={styles.langDropdown} ref={dropdownRef}>
             <button 
               className={styles.langButton}
               onClick={() => setIsOpen(!isOpen)}
-              aria-expanded={isOpen}
-              aria-haspopup="true"
+              aria-label={`Change language. Current: ${currentLang.label}`}
+              suppressHydrationWarning
             >
-              <span className={styles.langFlag}>{currentLang.flag}</span>
+              <span className={styles.langFlag} suppressHydrationWarning>{currentLang.flag}</span>
               <span className={styles.langCode}>{currentLang.code.toUpperCase()}</span>
               <svg 
                 className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ''}`}
@@ -68,7 +74,7 @@ export default function Header({ dict, locale = 'en' }: HeaderProps) {
               </svg>
             </button>
             
-            {isOpen && (
+            {mounted && isOpen && (
               <div className={styles.langMenu}>
                 {languages.map((lang) => (
                   <Link

@@ -1,14 +1,17 @@
 {
-  "name": "Pixgrab",
+  "name": "Pixgrab - Pinterest, Reddit & X Downloader",
   "short_name": "Pixgrab",
-  "description": "Download Pinterest, Reddit & X photos and videos in original quality. No login. No watermark.",
+  "description": "Download Pinterest, Reddit & X photos and videos in original quality. No login. No watermark. Free online media downloader.",
   "start_url": "/",
+  "id": "/",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
   "background_color": "#ffffff",
   "theme_color": "#1a1a1a",
   "orientation": "portrait-primary",
   "scope": "/",
   "lang": "en",
+  "dir": "ltr",
   "icons": [
     {
       "src": "/icons/icon-192x192.png",
@@ -23,7 +26,37 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["utilities", "productivity"],
+  "categories": ["utilities", "productivity", "social"],
   "screenshots": [],
-  "prefer_related_applications": false
+  "prefer_related_applications": false,
+  "share_target": {
+    "action": "/",
+    "method": "GET",
+    "params": {
+      "url": "url"
+    }
+  },
+  "shortcuts": [
+    {
+      "name": "Pinterest Downloader",
+      "short_name": "Pinterest",
+      "description": "Download Pinterest videos and images",
+      "url": "/pinterest-video-downloader",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Reddit Downloader",
+      "short_name": "Reddit",
+      "description": "Download Reddit videos with sound",
+      "url": "/reddit-video-downloader",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Twitter/X Downloader",
+      "short_name": "Twitter",
+      "description": "Download X/Twitter videos",
+      "url": "/twitter-video-downloader",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ]
 }

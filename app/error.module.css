@@ -8,7 +8,7 @@
 
 .content {
   text-align: center;
-  max-width: 400px;
+  max-width: 600px;
 }
 
 .title {
@@ -21,7 +21,48 @@
 .message {
   font-size: var(--text-base);
   color: var(--color-text-secondary);
+  margin-bottom: var(--space-6);
+}
+
+.suggestions {
+  background: var(--color-surface);
+  padding: var(--space-6);
   margin-bottom: var(--space-8);
+  border: 1px solid var(--color-border);
+}
+
+.suggestionsTitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.linksGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+@media (max-width: 480px) {
+  .linksGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.suggestionLink {
+  display: block;
+  padding: var(--space-3);
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-size: var(--text-sm);
+  transition: background 0.2s ease;
+  text-align: left;
+}
+
+.suggestionLink:hover {
+  background: var(--color-primary);
+  color: white;
 }
 
 .actions {

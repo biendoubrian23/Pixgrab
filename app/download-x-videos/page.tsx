@@ -103,16 +103,13 @@ export default function DownloadXVideosPage() {
             </section>
             
             <section className={styles.downloadSection}>
-              {!result ? (
-                <DownloadForm
-                  dict={dict}
-                  isLoading={isLoading}
-                  error={error}
-                  onSubmit={handleDownload}
-                />
-              ) : (
-                <Result dict={dict} result={result} onReset={handleReset} />
-              )}
+              <DownloadForm
+                dict={dict}
+                isLoading={isLoading}
+                error={error}
+                onSubmit={handleDownload}
+              />
+              {result && <Result dict={dict} result={result} />}
             </section>
             
             <section className={styles.contentSection}>
