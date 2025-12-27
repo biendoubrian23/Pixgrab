@@ -1,0 +1,291 @@
+Parfait, merci pour les précisions 👍
+Je vais corriger ce qui doit l’être, rester très terre-à-terre, et te livrer un cahier des charges technique MIS À JOUR, en tenant compte de :
+
+❌ PAS de bords arrondis → angles droits, style strict / pro
+
+✅ Backend simple avec Next.js uniquement
+
+💸 Objectif : quasi 0 € de coûts au début
+
+☁️ Déploiement serverless (type Vercel / équivalent “ESL”)
+
+📱 PWA mobile-first
+
+📥 Téléchargement photos & vidéos (Pinterest / Reddit / X)
+
+Je vais procéder en 4 parties :
+
+1️⃣ Clarification technique : comment les téléchargements fonctionnent vraiment
+2️⃣ Coûts réels (ce qui est gratuit, ce qui peut coûter, quand)
+3️⃣ Architecture technique simple avec Next.js (sans code)
+4️⃣ Cahier des charges technique mis à jour (version propre)
+
+1️⃣ COMMENT FONCTIONNENT RÉELLEMENT LES TÉLÉCHARGEMENTS
+
+(sans bullshit, sans magie)
+
+Tu ne “télécharges” pas une vidéo comme un bouton magique.
+Il y a 3 modèles possibles. Un seul est compatible avec ton objectif 0 €.
+
+🟢 MODÈLE À PRIVILÉGIER (GRATUIT / SERVERLESS)
+
+👉 Téléchargement en “proxy léger” ou redirection directe
+
+Principe :
+
+L’utilisateur colle un lien (Pinterest / Reddit / X)
+
+Ton backend Next.js :
+
+récupère la page
+
+extrait l’URL directe du média (image / vidéo)
+
+Tu :
+
+soit rediriges l’utilisateur vers cette URL
+
+soit streams le fichier directement vers son navigateur
+
+📌 Important :
+
+Tu NE STOCKES PAS la vidéo
+
+Tu NE RE-ENCODES PAS
+
+Tu NE CONSERVES RIEN
+
+👉 Résultat :
+
+Coût serveur ≈ 0
+
+Scalabilité maximale
+
+Compatible serverless
+
+🔴 MODÈLE À ÉVITER (COÛTEUX)
+
+❌ Télécharger → stocker → redonner
+
+Bande passante
+
+Stockage
+
+CPU
+
+Factures rapides
+
+👉 À éviter absolument au début
+
+🟡 MODÈLE MIXTE (plus tard)
+
+Stockage temporaire (quelques minutes)
+
+Utile pour ZIP / batch
+
+À faire après traction
+
+2️⃣ COÛTS RÉELS (VISION HONNÊTE)
+🎯 OBJECTIF : 0 € au début
+Ce qui peut être GRATUIT :
+
+Frontend Next.js
+
+Backend API Next.js
+
+PWA
+
+Hébergement serverless
+
+SSL
+
+Domaine (optionnel au début)
+
+👉 Oui, c’est possible
+
+💸 Où les coûts peuvent apparaître (PLUS TARD)
+Élément	Quand	Pourquoi
+Bande passante	Gros trafic	Vidéos lourdes
+CPU	Scraping intensif	Trop de requêtes
+Rate limiting	Abus	Bots
+Stockage	ZIP / batch	Option premium
+
+👉 Tant que :
+
+pas de batch
+
+pas de ZIP
+
+pas de stockage
+➡️ coût quasi nul
+
+🧠 Astuce clé pour rester à 0 €
+
+Streaming direct
+
+Pas de cache serveur
+
+Pas de file system
+
+Pas de base de données au début
+
+3️⃣ ARCHITECTURE TECHNIQUE SIMPLE (NEXT.JS ONLY)
+🧱 STACK TECHNIQUE (MINIMALISTE)
+Frontend
+
+Next.js (App Router)
+
+Mobile-first
+
+PWA
+
+Une seule page principale
+
+Backend
+
+API Routes Next.js
+
+Serverless
+
+Pas de microservices
+
+Pas de DB au début
+
+🔄 FLUX TECHNIQUE (EXEMPLE)
+
+Utilisateur colle un lien
+
+Frontend envoie le lien à l’API Next.js
+
+API :
+
+fetch la page source
+
+extrait l’URL du média
+
+Retour :
+
+URL directe
+
+ou stream vers le client
+
+Téléchargement côté navigateur
+
+📌 Tout se passe en RAM
+📌 Aucun fichier conservé
+
+4️⃣ CAHIER DES CHARGES TECHNIQUE – VERSION MISE À JOUR
+🟦 1. POSITIONNEMENT PRODUIT
+
+Web app PWA mobile-first
+👉 Téléchargement de photos & vidéos en qualité originale
+👉 Pinterest / Reddit / X
+👉 Une tâche claire, rapide, propre
+
+🟦 2. FONCTIONNALITÉS MVP
+Fonction unique
+
+Coller un lien
+
+Télécharger le média
+
+Supports
+
+Pinterest : photos + vidéos
+
+Reddit : vidéos + images
+
+X : vidéos
+
+🟦 3. CONTRAINTES TECHNIQUES
+
+Next.js uniquement
+
+Serverless
+
+Pas de stockage long
+
+Streaming ou redirection
+
+Pas de login
+
+Pas de DB
+
+🟦 4. PWA
+
+Installable mobile
+
+Cache des assets
+
+Offline fallback (info only)
+
+Performance mobile prioritaire
+
+🟦 5. UX / UI (MISE À JOUR)
+Style
+
+Ultra professionnel
+
+Minimaliste
+
+Inspiré Apple / SaaS pro
+
+Formes
+
+❌ PAS de bords arrondis
+
+✅ Angles droits nets
+
+Cartes rectangulaires
+
+Boutons sobres
+
+Couleurs
+
+Fond blanc / gris très clair
+
+1 couleur primaire discrète
+
+1 couleur accent
+
+Pas de dégradés lourds
+
+🟦 6. PERFORMANCE & QUALITÉ
+
+Qualité originale uniquement
+
+Pas de recompression
+
+Indication taille / format
+
+Feedback clair sur mobile
+
+🟦 7. SÉCURITÉ / LIMITES
+
+Rate limiting basique
+
+Taille max par fichier
+
+Blocage abus simple
+
+Message clair en cas d’erreur
+
+🟦 8. ÉVOLUTIONS FUTURES (NON MVP)
+
+Batch download
+
+ZIP
+
+Historique local
+
+Version premium sans pub
+
+Stockage temporaire
+
+🧠 RÉSUMÉ FINAL
+
+✔️ Oui, tu peux faire ça avec Next.js seul
+✔️ Oui, tu peux rester à ~0 € au début
+✔️ Oui, Pinterest / Reddit / X sont techniquement faisables
+✔️ Non, tu n’as pas besoin de stockage ni de grosse infra
+✔️ Non, pas de design arrondi (angles droits, clean, pro)

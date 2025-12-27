@@ -1,0 +1,8 @@
+<!-- 
+  Placeholder SVG icon for PWA (512x512)
+  Replace this with your actual icon
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#1a1a1a"/>
+  <text x="256" y="290" text-anchor="middle" fill="#ffffff" font-family="system-ui, sans-serif" font-size="140" font-weight="600">P</text>
+</svg>

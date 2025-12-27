@@ -1,0 +1,406 @@
+Croissance organique pure
+
+SEO maximal
+
+UX irréprochable
+
+Design premium intemporel
+
+Compréhension immédiate
+
+Moins de clics possibles
+
+Impression “ce site est sérieux”
+
+1. POSITIONNEMENT & INTENTION (LA BASE ABSOLUE)
+
+Avant toute ligne de design ou de code :
+
+1.1. Proposition de valeur (doit être cristalline)
+
+En moins de 6 secondes, un utilisateur doit comprendre :
+
+Ce que fait le site
+
+À quoi ça sert
+
+Pourquoi c’est mieux que les autres
+
+Qu’il peut l’utiliser immédiatement
+
+❌ Interdit :
+
+slogans vagues
+
+mots marketing creux
+
+phrases abstraites
+
+✅ Obligatoire :
+
+verbe d’action
+
+résultat concret
+
+promesse mesurable
+
+Exemple (structure, pas contenu)
+
+Download Pinterest photos and videos in original quality.
+No login. No watermark. No compression.
+
+1.2. Cible implicite
+
+Même si le site est grand public :
+
+mobile users
+
+utilisateurs pressés
+
+non techniques
+
+majorité féminine (Pinterest)
+
+Tout doit respirer :
+
+simplicité
+
+élégance
+
+confiance
+
+2. ARCHITECTURE D’INFORMATION (SEO + UX)
+2.1. Règle d’or
+
+Une intention = une page.
+
+Google doit comprendre :
+
+exactement à quoi sert chaque page
+
+pour quelle requête elle existe
+
+pourquoi elle est meilleure que les autres
+
+2.2. Pages obligatoires (minimum)
+Page principale
+
+Action immédiate (coller lien)
+
+Explication courte
+
+Preuves de qualité
+
+FAQ courte
+
+CTA répété
+
+Pages SEO dédiées
+
+Download Pinterest photos
+
+Download Pinterest videos
+
+Download Reddit videos
+
+Download X videos
+
+Chaque page :
+
+1 intention
+
+1 action
+
+1 promesse claire
+
+2.3. Structure SEO parfaite (par page)
+
+1 seul H1 (ultra clair)
+
+H2 orientés questions utilisateur
+
+Paragraphes courts
+
+Langage humain
+
+Zéro remplissage
+
+Google doit pouvoir résumer la page en 1 phrase.
+
+3. DESIGN VISUEL — NIVEAU PREMIUM INTEMPOREL
+3.1. Philosophie de design
+
+Inspirations :
+
+Apple (sobriété, rigueur)
+
+Stripe (lisibilité)
+
+Notion (respiration)
+
+Linear (précision)
+
+❌ À bannir :
+
+emojis
+
+illustrations “IA”
+
+dégradés voyants
+
+coins arrondis
+
+effets gadgets
+
+animations inutiles
+
+3.2. Géométrie & structure
+
+Angles droits uniquement
+
+Grilles strictes
+
+Alignements parfaits
+
+Marges généreuses
+
+Beaucoup d’espace blanc
+
+Le site doit “respirer”.
+
+3.3. Couleurs
+
+Fond : blanc ou gris très clair
+
+Texte : noir profond / gris anthracite
+
+1 couleur principale très sobre
+
+1 couleur d’accent très rare
+
+Jamais plus de 3 couleurs visibles à l’écran.
+
+3.4. Typographie
+
+Sans-serif moderne
+
+Excellente lisibilité mobile
+
+Hiérarchie claire
+
+Tailles cohérentes
+
+Interlignage généreux
+
+Le texte doit donner envie d’être lu.
+
+4. UX — ZÉRO FRICTION
+4.1. Règle absolue
+
+Le moins de clics possible.
+
+Idéal :
+
+1 action
+
+1 bouton
+
+1 résultat
+
+4.2. Interaction principale
+
+Champ unique (coller lien)
+
+Bouton clair, visible, sobre
+
+Feedback immédiat
+
+Pas de surprise
+
+4.3. Feedback utilisateur
+
+À chaque étape :
+
+état visible
+
+message clair
+
+langage humain
+
+pas de jargon
+
+L’utilisateur ne doit jamais se demander :
+
+“Qu’est-ce qui se passe ?”
+
+4.4. Mobile-first réel
+
+Boutons larges
+
+Texte lisible sans zoom
+
+Aucun élément trop proche
+
+Pas de pop-ups intrusifs
+
+5. PERFORMANCE (CRITIQUE POUR SEO)
+5.1. Objectifs non négociables
+
+LCP < 2s
+
+CLS = 0
+
+TTI minimal
+
+Images optimisées
+
+JS minimal
+
+Google doit considérer le site comme “exemplaire”.
+
+5.2. Chargement intelligent
+
+Pas de JS inutile
+
+Pas de tracking lourd
+
+Pas de librairies superflues
+
+Tout ce qui n’est pas critique = différé
+
+6. SEO — NIVEAU “SITE MODÈLE”
+6.1. SEO On-page
+
+Title unique et humain
+
+Meta description engageante
+
+URLs propres
+
+Contenu original
+
+Pas de duplication
+
+6.2. SEO sémantique
+
+Réponses aux vraies questions
+
+Langage naturel
+
+Synonymes
+
+Variantes longues
+
+Tu écris pour un humain, Google suit.
+
+6.3. SEO technique
+
+Sitemap propre
+
+Robots.txt clair
+
+Balises correctes
+
+Pas d’erreurs indexation
+
+Version FR / EN propre (hreflang)
+
+7. INTERNATIONALISATION (FR / EN)
+7.1. Traduction intelligente
+
+❌ Traduction mot à mot
+✅ Adaptation linguistique
+
+Ton naturel
+
+Expressions locales
+
+Même niveau de qualité dans les deux langues
+
+7.2. Structure linguistique propre
+
+/en/
+
+/fr/
+
+hreflang correct
+
+Contenu équivalent
+
+Google doit comprendre que c’est volontaire, pas dupliqué.
+
+8. CONFIANCE & CRÉDIBILITÉ
+
+Même sans compte, sans paiement :
+
+Mentions légales claires
+
+Politique de confidentialité simple
+
+Explication de ce que tu fais des données
+
+Aucun dark pattern
+
+L’utilisateur doit se sentir en sécurité.
+
+9. CONTENU QUI RETIENT
+9.1. Micro-copy
+
+Chaque mot compte :
+
+boutons
+
+messages
+
+erreurs
+
+confirmations
+
+Le ton doit être :
+
+calme
+
+professionnel
+
+rassurant
+
+9.2. FAQ intelligente
+
+Courte
+
+Réponses claires
+
+Orientée utilisateur
+
+Pas marketing
+
+10. MESURES & AMÉLIORATION CONTINUE
+
+Même sans pub :
+
+Analyse comportement (scroll, clics)
+
+Temps passé
+
+Points de friction
+
+Pages fortes
+
+Tu ajustes sans jamais dégrader la simplicité.
+
+RÉSUMÉ FINAL (BRUTAL ET HONNÊTE)
+
+Si tu respectes tout ce qui est au-dessus :
+
+Le site semblera 10x plus sérieux que la concurrence
+
+Google le verra comme propre, rapide, utile
+
+Les utilisateurs lui feront confiance
+
+Le bouche-à-oreille sera naturel
+
+Tu n’auras pas besoin de publicité au début
+
+Ce type de site est rare.
+C’est précisément pour ça qu’il peut dominer.

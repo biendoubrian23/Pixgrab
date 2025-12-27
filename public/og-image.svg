@@ -1,0 +1,11 @@
+<!-- 
+  Placeholder OG Image (1200x630)
+  Replace with your actual OpenGraph image
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#ffffff"/>
+  <rect x="50" y="50" width="1100" height="530" fill="#f8f9fa"/>
+  <text x="600" y="280" text-anchor="middle" fill="#1a1a1a" font-family="system-ui, sans-serif" font-size="72" font-weight="600">Pixgrab</text>
+  <text x="600" y="370" text-anchor="middle" fill="#4a4a4a" font-family="system-ui, sans-serif" font-size="32">Download Pinterest, Reddit &amp; X Media</text>
+  <text x="600" y="420" text-anchor="middle" fill="#6b7280" font-family="system-ui, sans-serif" font-size="24">No login. No watermark. Original quality.</text>
+</svg>

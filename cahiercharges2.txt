@@ -1,0 +1,336 @@
+1️⃣ CHOIX FINAL DE LA NICHE (OBJECTIF : PWA + MOBILE + FEMMES)
+
+Tu aimes X, Reddit et Pinterest, mais si on est très rationnel :
+
+🥇 LE PLUS INTÉRESSANT POUR TON OBJECTIF
+
+👉 Pinterest (photos + vidéos)
+
+Pourquoi Pinterest est supérieur ici :
+
+Audience très féminine
+
+Usage mobile massif
+
+Photos + vidéos (très bon pour PWA)
+
+Peu d’outils clean existants
+
+Forte attente de qualité visuelle
+
+Contenu “safe” (moins de problèmes légaux)
+
+👉 C’est le meilleur compromis :
+
+technique + business + design + mobile
+
+🥈 Reddit
+
+Très bon techniquement
+
+Mais audience plus masculine
+
+UX moins “esthétique”
+
+🥉 X (Twitter)
+
+Très facile techniquement
+
+Mais usage plus textuel que visuel
+
+📌 Donc pour ce cahier des charges :
+👉 Pinterest Downloader (Photos & Vidéos)
+
+2️⃣ POURQUOI UNE PWA ICI EST EXCELLENTE
+Objectif :
+
+👉 Être utilisé comme une app, sans passer par un store.
+
+Avantages clés :
+
+Mobile-first
+
+Ajout à l’écran d’accueil
+
+Utilisation rapide
+
+Pas de friction
+
+Notifications possibles plus tard
+
+👉 Parfait pour :
+
+Créateurs
+
+Étudiantes
+
+Pinterest addicts
+
+Utilisation répétée
+
+3️⃣ PÉRIMÈTRE FONCTIONNEL – MVP
+🎯 TÂCHE UNIQUE (MVP)
+
+Télécharger des photos ou vidéos Pinterest en qualité maximale
+
+Fonctionnalités MVP (OBLIGATOIRES)
+
+Champ pour coller un lien Pinterest
+
+Analyse automatique du lien
+
+Détection :
+
+photos
+
+vidéos
+
+Téléchargement en qualité originale
+
+Compatible mobile & desktop
+
+Sans compte
+
+Sans watermark
+
+👉 Une page, une action, un résultat
+
+Fonctionnalités EXCLUES du MVP
+
+Login
+
+Historique cloud
+
+Multi-plateforme
+
+Edition
+
+Résumé
+
+Pub agressive
+
+4️⃣ CAHIER DES CHARGES TECHNIQUE (STACK & ARCHI)
+🧱 FRONTEND
+
+Next.js
+
+Mode App Router
+
+Mobile-first
+
+Responsive strict
+
+Lazy loading
+
+🧱 BACKEND
+
+Deux options possibles (à décider plus tard) :
+
+Option A – API interne Next.js
+
+Routes API server-side
+
+Simple à maintenir
+
+Bien pour MVP
+
+Option B – Micro-service dédié
+
+Service backend séparé
+
+Plus scalable
+
+À faire plus tard
+
+👉 Pour MVP : Option A
+
+🧱 PWA
+
+Service Worker
+
+Manifest.json
+
+Offline fallback (page info)
+
+Cache des assets
+
+Ajout à l’écran d’accueil
+
+🧱 TÉLÉCHARGEMENT & TRAITEMENT
+Contraintes techniques :
+
+Téléchargement sans recompression
+
+Préserver la résolution originale
+
+Streaming (pas stockage long)
+
+👉 Très important pour :
+
+Qualité
+
+Coût serveur
+
+Performance mobile
+
+🧱 STOCKAGE
+
+Temporaire uniquement
+
+Suppression automatique après X minutes
+
+Pas d’archivage utilisateur
+
+🧱 SÉCURITÉ
+
+Limitation par IP
+
+Rate limiting
+
+Taille max par fichier
+
+Anti-abus basique
+
+5️⃣ SPÉCIFICITÉS MOBILE (TRÈS IMPORTANT)
+📱 Téléchargement mobile
+
+Contraintes :
+
+iOS & Android n’aiment pas les gros fichiers
+
+UX doit être claire
+
+Fonctionnalités mobiles clés :
+
+Bouton “Télécharger”
+
+Indication de taille
+
+Choix photo / vidéo
+
+Message “Comment enregistrer sur ton téléphone”
+
+📸 PHOTOS MULTIPLES (IMPORTANT POUR PINTEREST)
+Ce qui est faisable techniquement :
+
+Détecter toutes les images d’un pin
+
+Proposer :
+
+téléchargement individuel
+
+ou ZIP (option avancée)
+
+👉 Pour MVP :
+
+Téléchargement image par image
+
+ZIP = V2
+
+6️⃣ UX / UI & CHARTE GRAPHIQUE
+🎨 STYLE GÉNÉRAL
+
+Ultra clean
+
+White background
+
+Apple-like
+
+Minimalisme assumé
+
+🎨 COULEURS
+
+Blanc dominant
+
+1 couleur principale (douce)
+
+1 couleur secondaire (accent)
+
+Exemples :
+
+Blanc / gris très clair
+
+Accent pastel (rose doux, lilas, beige chaud, vert sauge)
+
+👉 Très Pinterest / féminin / premium
+
+🎨 FORMES
+
+Coins très arrondis
+
+Boutons larges (mobile)
+
+Ombres très légères
+
+Cartes flottantes
+
+🎨 TYPO
+
+Sans-serif moderne
+
+Lisible
+
+Hiérarchie claire
+
+🧠 UX PRINCIPES
+
+Zéro surcharge
+
+Une action visible
+
+Résultat immédiat
+
+Feedback visuel constant
+
+7️⃣ ÉVOLUTIVITÉ & FONCTIONNALITÉS FUTURES
+🔹 V2 (après traction)
+
+Batch download
+
+ZIP
+
+Historique local
+
+Choix qualité
+
+🔹 V3 (monétisation)
+
+Suppression pubs
+
+Téléchargements illimités
+
+Priorité vitesse
+
+🔹 V4 (différenciation)
+
+Organisation de pins
+
+Téléchargement collections
+
+PWA notifications
+
+⚠️ RISQUES TECHNIQUES À ANTICIPER
+
+Changements Pinterest (scraping)
+
+Charge serveur
+
+Téléchargements lourds
+
+Limitations mobiles iOS
+
+👉 Tous gérables avec une architecture simple.
+
+🧠 RÉSUMÉ STRATÉGIQUE
+
+👉 Pinterest Downloader en PWA est :
+
+Le plus aligné avec ton objectif
+
+Le plus esthétique
+
+Le plus féminin
+
+Le plus monétisable à long terme
+
+Le plus différenciable

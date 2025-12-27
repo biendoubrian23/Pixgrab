@@ -1,0 +1,86 @@
+.page {
+  min-height: 100vh;
+  padding: var(--space-8) 0 var(--space-16);
+}
+
+.content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: var(--space-8);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.backLink:hover {
+  color: var(--color-text-primary);
+}
+
+.title {
+  font-size: var(--text-4xl);
+  font-weight: 600;
+  margin-bottom: var(--space-8);
+  color: var(--color-text-primary);
+}
+
+.section {
+  margin-bottom: var(--space-8);
+}
+
+.section h2 {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+  color: var(--color-text-primary);
+}
+
+.section p {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-4);
+}
+
+.section p:last-child {
+  margin-bottom: 0;
+}
+
+.section ul,
+.section ol {
+  margin: var(--space-4) 0;
+  padding-left: var(--space-6);
+}
+
+.section li {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-2);
+}
+
+.section a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.section a:hover {
+  color: var(--color-accent-hover);
+}
+
+.lastUpdated {
+  margin-top: var(--space-12);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-4);
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: var(--text-3xl);
+  }
+}

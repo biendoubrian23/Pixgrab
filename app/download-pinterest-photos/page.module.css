@@ -1,0 +1,84 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+}
+
+.hero {
+  text-align: center;
+  padding-top: var(--space-12);
+}
+
+.title {
+  font-size: var(--text-4xl);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-4);
+}
+
+.subtitle {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.downloadSection {
+  margin-top: var(--space-10);
+}
+
+.contentSection {
+  margin-top: var(--space-16);
+  padding: var(--space-8);
+  background-color: var(--color-bg-secondary);
+}
+
+.contentSection h2 {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+  margin-top: var(--space-8);
+  color: var(--color-text-primary);
+}
+
+.contentSection h2:first-child {
+  margin-top: 0;
+}
+
+.contentSection ol,
+.contentSection ul {
+  padding-left: var(--space-6);
+  margin-bottom: var(--space-4);
+}
+
+.contentSection li {
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-2);
+}
+
+.faqSection {
+  margin-top: var(--space-16);
+  padding: var(--space-16) 0;
+  background-color: var(--color-bg);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-top: var(--space-8);
+  }
+  
+  .title {
+    font-size: var(--text-3xl);
+  }
+  
+  .contentSection {
+    margin-top: var(--space-10);
+    padding: var(--space-6);
+  }
+}

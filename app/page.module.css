@@ -1,0 +1,33 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+}
+
+.downloadSection {
+  margin-top: var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.faqSection {
+  margin-top: var(--space-20);
+  padding: var(--space-16) 0;
+  background-color: var(--color-bg-secondary);
+}
+
+@media (max-width: 640px) {
+  .downloadSection {
+    margin-top: var(--space-8);
+  }
+  
+  .faqSection {
+    margin-top: var(--space-12);
+    padding: var(--space-12) 0;
+  }
+}
