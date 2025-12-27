@@ -11,23 +11,16 @@ interface ResultProps {
 
 type Resolution = 'original' | 'high' | 'medium' | 'low';
 
-const resolutions: { id: Resolution; label: string; suffix: string; free: boolean }[] = [
-  { id: 'original', label: 'Original (4K)', suffix: '', free: true },
-  { id: 'high', label: 'High (1080p)', suffix: '', free: true },
-  { id: 'medium', label: 'Medium (720p)', suffix: '', free: true },
-  { id: 'low', label: 'Low (480p)', suffix: '', free: true },
+const resolutions: { id: Resolution; label: string; free: boolean }[] = [
+  { id: 'original', label: 'Original (4K)', free: true },
+  { id: 'high', label: 'High (1080p)', free: true },
+  { id: 'medium', label: 'Medium (720p)', free: true },
+  { id: 'low', label: 'Low (480p)', free: true },
 ];
 
 export default function Result({ dict, result }: ResultProps) {
   const [selectedResolution, setSelectedResolution] = useState<Resolution>('original');
   const [isDownloading, setIsDownloading] = useState(false);
-
-  const formatSize = (bytes?: number): string => {
-    if (!bytes) return '';
-    if (bytes < 1024) return `${bytes} B`;
-    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-  };
 
   const getFileExtension = (url: string): string => {
     const match = url.match(/\.(\w+)(?:\?|$)/);
@@ -48,7 +41,6 @@ export default function Result({ dict, result }: ResultProps) {
       document.body.appendChild(link);
       link.click();
       
-      // Nettoyage sécurisé
       setTimeout(() => {
         if (link.parentNode) {
           link.parentNode.removeChild(link);
@@ -64,30 +56,13 @@ export default function Result({ dict, result }: ResultProps) {
 
   return (
     <div className={`${styles.result} fade-in`}>
-      <div className={styles.preview}>
-        {result.type === 'image' ? (
-          <img 
-            src={result.thumbnailUrl || result.url} 
-            alt="Preview"
-            className={styles.image}
-          />
-        ) : (
-          <video 
-            src={result.url}
-            className={styles.video}
-            controls
-            playsInline
-            preload="metadata"
-          />
-        )}
-      </div>
-      
-      <div className={styles.info}>
+      {/* Layout horizontal: contrôles à gauche, preview à droite */}
+      <div className={styles.controls}>
         <div className={styles.meta}>
           <span className={styles.badge}>{getFileExtension(result.url)}</span>
-          {result.size && (
-            <span className={styles.size}>{formatSize(result.size)}</span>
-          )}
+          <span className={styles.typeLabel}>
+            {result.type === 'video' ? 'Video' : 'Image'}
+          </span>
         </div>
         
         {/* Sélecteur de résolution */}
@@ -127,6 +102,24 @@ export default function Result({ dict, result }: ResultProps) {
             </>
           )}
         </button>
+      </div>
+      
+      <div className={styles.preview}>
+        {result.type === 'image' ? (
+          <img 
+            src={result.thumbnailUrl || result.url} 
+            alt="Preview"
+            className={styles.image}
+          />
+        ) : (
+          <video 
+            src={result.url}
+            className={styles.video}
+            controls
+            playsInline
+            preload="metadata"
+          />
+        )}
       </div>
     </div>
   );

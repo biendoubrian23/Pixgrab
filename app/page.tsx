@@ -65,21 +65,21 @@ export default function Home() {
             <Hero dict={dict} />
             
             <section className={styles.downloadSection}>
-              {/* Afficher le résultat s'il existe */}
-              {result && (
-                <Result
-                  dict={dict}
-                  result={result}
-                />
-              )}
-              
-              {/* Toujours afficher le formulaire */}
+              {/* Formulaire en premier */}
               <DownloadForm
                 dict={dict}
                 isLoading={isLoading}
                 error={error}
                 onSubmit={handleDownload}
               />
+              
+              {/* Résultat en dessous */}
+              {result && (
+                <Result
+                  dict={dict}
+                  result={result}
+                />
+              )}
             </section>
           </div>
         </div>
