@@ -1,6 +1,6 @@
 // Types pour Pixgrab
 
-export type Platform = 'pinterest' | 'reddit' | 'twitter' | 'unknown';
+export type Platform = 'pinterest' | 'reddit' | 'twitter' | 'tiktok' | 'instagram' | 'youtube' | 'facebook' | 'threads' | 'unknown';
 
 export type MediaType = 'image' | 'video';
 
@@ -36,7 +36,7 @@ export interface RateLimitInfo {
 }
 
 // Types pour l'internationalisation
-export type Locale = 'en' | 'fr';
+export type Locale = 'en' | 'fr' | 'es' | 'pt' | 'it' | 'de' | 'nl';
 
 export interface Dictionary {
   meta: {
@@ -73,6 +73,7 @@ export interface Dictionary {
     serverError: string;
     rateLimited: string;
     networkError: string;
+    comingSoon: string;
   };
   faq: {
     title: string;

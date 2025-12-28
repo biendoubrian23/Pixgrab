@@ -1,70 +1,125 @@
 .container {
-  margin-top: var(--space-10);
-}
-
-/* Platform selector */
-.platformSelector {
   display: flex;
-  justify-content: center;
-  gap: var(--space-3);
-  margin-bottom: var(--space-6);
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
 }
 
-.platformBadge {
+/* Infinite Carousel */
+.carouselWrapper {
+  width: 100%;
+  overflow: hidden;
+  padding: 1rem 0;
+  margin-bottom: 0.5rem;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.carouselTrack {
+  display: flex;
+  gap: 2rem;
+  animation: scroll 25s linear infinite;
+  width: max-content;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.carouselTrack:hover {
+  animation-play-state: paused;
+}
+
+.carouselItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--card-bg);
+  border-radius: 12px;
+  min-width: 90px;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.carouselItem:hover {
+  transform: translateY(-4px);
+  border-color: var(--platform-color, var(--primary));
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.carouselItem .platformLogo svg {
+  fill: var(--platform-color, currentColor);
+  transition: transform 0.3s ease;
+}
+
+.carouselItem:hover .platformLogo svg {
+  transform: scale(1.1);
+}
+
+.carouselItemInactive {
+  opacity: 0.5;
+}
+
+.carouselItemInactive .platformLogo svg {
+  fill: #999999 !important;
+}
+
+.carouselItemInactive:hover {
+  opacity: 0.7;
+  border-color: #999999;
+}
+
+.platformLogo {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
-  background: var(--color-surface);
-  border: 2px solid var(--color-border);
-  cursor: pointer;
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--color-text-secondary);
-  transition: all 0.2s ease;
-}
-
-.platformBadge:hover {
-  border-color: var(--platform-color);
-  color: var(--platform-color);
-}
-
-.platformBadge.active {
-  border-color: var(--platform-color);
-  background: var(--platform-color);
-  color: white;
-}
-
-.platformIcon {
-  display: flex;
-  align-items: center;
   justify-content: center;
+  width: 48px;
+  height: 48px;
 }
 
 .platformName {
-  display: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
 }
 
-/* Form */
+/* Form Styles */
 .form {
-  margin-top: var(--space-4);
+  width: 100%;
 }
 
 .inputGroup {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
+  gap: 0.75rem;
+  width: 100%;
 }
 
 .input {
-  text-align: center;
+  flex: 1;
+  min-width: 0;
 }
 
 .button {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-2);
+  gap: 0.5rem;
+  white-space: nowrap;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .downloadIcon {
@@ -72,46 +127,136 @@
 }
 
 .loadingText {
-  margin-left: var(--space-2);
+  margin-left: 0.25rem;
 }
 
 .error {
-  margin-top: var(--space-4);
+  margin-top: 1rem;
+}
+
+/* Coming Soon Popup */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+  padding: 1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.popupContent {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 100%;
   text-align: center;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
 }
 
-/* Desktop */
-@media (min-width: 481px) {
-  .platformName {
-    display: inline;
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (min-width: 641px) {
+.popupClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.popupClose:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.popupIcon {
+  margin-bottom: 1rem;
+}
+
+.popupIcon svg {
+  fill: var(--primary);
+}
+
+.popupMessage {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
   .inputGroup {
-    flex-direction: row;
-  }
-  
-  .input {
-    flex: 1;
-    text-align: left;
+    flex-direction: column;
   }
   
   .button {
-    flex-shrink: 0;
+    width: 100%;
+    justify-content: center;
   }
   
-  .platformBadge {
-    padding: var(--space-3) var(--space-5);
-  }
-}
-
-@media (max-width: 480px) {
-  .platformSelector {
-    gap: var(--space-2);
+  .carouselItem {
+    min-width: 75px;
+    padding: 0.5rem 0.75rem;
   }
   
-  .platformBadge {
-    padding: var(--space-2) var(--space-3);
+  .platformLogo {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .platformLogo svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .platformName {
+    font-size: 0.65rem;
+  }
+  
+  .carouselTrack {
+    gap: 1rem;
+  }
+  
+  .popupContent {
+    padding: 1.5rem;
+  }
+  
+  .popupMessage {
+    font-size: 1rem;
   }
 }

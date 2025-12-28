@@ -23,6 +23,11 @@ export const metadata: Metadata = {
     languages: {
       'en': 'https://pixgrab.com/en',
       'fr': 'https://pixgrab.com/fr',
+      'es': 'https://pixgrab.com/es',
+      'pt': 'https://pixgrab.com/pt',
+      'it': 'https://pixgrab.com/it',
+      'de': 'https://pixgrab.com/de',
+      'nl': 'https://pixgrab.com/nl',
     },
   },
 };

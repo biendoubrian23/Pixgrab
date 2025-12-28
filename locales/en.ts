@@ -40,6 +40,7 @@ export const en: Dictionary = {
     serverError: 'Something went wrong. Please try again.',
     rateLimited: 'Too many requests. Please wait a moment.',
     networkError: 'Connection error. Check your internet.',
+    comingSoon: 'This feature is coming soon! For now, try Pinterest, Reddit, or X links.',
   },
   faq: {
     title: 'Frequently Asked Questions',

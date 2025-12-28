@@ -7,16 +7,22 @@ import { Dictionary } from '@/types';
 import styles from './Header.module.css';
 
 interface HeaderProps {
-  dict: Dictionary;
-  locale?: 'en' | 'fr';
+  dict?: Dictionary;
+  dictionary?: { title?: string; nav?: { home?: string; legal?: string } };
+  locale?: 'en' | 'fr' | 'es' | 'pt' | 'it' | 'de' | 'nl';
 }
 
 const languages = [
-  { code: 'en', label: 'English', flag: 'GB' },
-  { code: 'fr', label: 'Français', flag: 'FR' },
+  { code: 'en', label: 'English', flag: '🇬🇧' },
+  { code: 'fr', label: 'Français', flag: '🇫🇷' },
+  { code: 'es', label: 'Español', flag: '🇪🇸' },
+  { code: 'pt', label: 'Português', flag: '🇧🇷' },
+  { code: 'it', label: 'Italiano', flag: '🇮🇹' },
+  { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
+  { code: 'nl', label: 'Nederlands', flag: '🇳🇱' },
 ];
 
-export default function Header({ dict, locale = 'en' }: HeaderProps) {
+export default function Header({ dict, dictionary, locale = 'en' }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);

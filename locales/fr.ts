@@ -40,6 +40,7 @@ export const fr: Dictionary = {
     serverError: 'Une erreur s\'est produite. Veuillez réessayer.',
     rateLimited: 'Trop de requêtes. Veuillez patienter un instant.',
     networkError: 'Erreur de connexion. Vérifiez votre internet.',
+    comingSoon: 'Cette fonctionnalité sera bientôt disponible ! En attendant, essayez Pinterest, Reddit ou X.',
   },
   faq: {
     title: 'Questions fréquentes',

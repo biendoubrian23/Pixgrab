@@ -3,6 +3,11 @@ import { detectPlatform, isValidUrl, cleanUrl } from '@/lib/urlParser';
 import { extractPinterestMedia } from '@/lib/scrapers/pinterest';
 import { extractRedditMedia } from '@/lib/scrapers/reddit';
 import { extractTwitterMedia } from '@/lib/scrapers/twitter';
+import { extractTikTokMedia } from '@/lib/scrapers/tiktok';
+import { extractInstagramMedia } from '@/lib/scrapers/instagram';
+import { extractYouTubeMedia } from '@/lib/scrapers/youtube';
+import { extractFacebookMedia } from '@/lib/scrapers/facebook';
+import { extractThreadsMedia } from '@/lib/scrapers/threads';
 import { checkRateLimit, getClientIp } from '@/lib/rateLimit';
 import { DownloadResponse } from '@/types';
 
@@ -64,6 +69,18 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           error: 'This platform is not supported yet. Try Pinterest, Reddit, or X links.',
+        },
+        { status: 400 }
+      );
+    }
+
+    // Plateformes en cours de développement
+    const comingSoonPlatforms = ['tiktok', 'instagram', 'youtube', 'facebook', 'threads'];
+    if (comingSoonPlatforms.includes(platform)) {
+      return NextResponse.json<DownloadResponse>(
+        {
+          success: false,
+          error: `${platform.charAt(0).toUpperCase() + platform.slice(1)} downloads are coming soon! For now, try Pinterest, Reddit, or X links.`,
         },
         { status: 400 }
       );

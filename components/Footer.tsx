@@ -3,22 +3,29 @@ import { Dictionary } from '@/types';
 import styles from './Footer.module.css';
 
 interface FooterProps {
-  dict: Dictionary;
+  dict?: Dictionary;
+  dictionary?: { footer: { tagline?: string; legal: string; privacy: string; copyright: string } };
 }
 
-export default function Footer({ dict }: FooterProps) {
+export default function Footer({ dict, dictionary }: FooterProps) {
   const currentYear = new Date().getFullYear();
-  const copyright = dict.footer.copyright.replace('{year}', currentYear.toString());
+  const footer = dict?.footer || dictionary?.footer;
+  
+  if (!footer) {
+    return null;
+  }
+  
+  const copyright = footer.copyright.replace('{year}', currentYear.toString()).replace('© 2024', `© ${currentYear}`);
 
   return (
     <footer className={styles.footer} role="contentinfo">
       <div className={`container ${styles.container}`}>
         <nav className={styles.links} aria-label="Footer navigation">
           <Link href="/legal" className={styles.link}>
-            {dict.footer.legal}
+            {footer.legal}
           </Link>
           <Link href="/privacy" className={styles.link}>
-            {dict.footer.privacy}
+            {footer.privacy}
           </Link>
         </nav>
         

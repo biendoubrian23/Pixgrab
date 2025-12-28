@@ -2,15 +2,15 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Pixgrab - Download Pinterest, Reddit & X Media',
-  description: 'Download Pinterest photos and videos, Reddit videos, and X/Twitter media in original quality. No login. No watermark. No compression.',
+  description: 'Download Pinterest-foto\'s en -video\'s, Reddit-video\'s en X/Twitter-media in originele kwaliteit. Geen login. Geen watermerk. Geen compressie.',
   openGraph: {
     title: 'Pixgrab - Download Pinterest, Reddit & X Media',
-    description: 'Download photos and videos in original quality. No login. No watermark.',
-    url: 'https://pixgrab.com/en',
-    locale: 'en_US',
+    description: 'Download foto\'s en video\'s in originele kwaliteit. Geen login. Geen watermerk.',
+    url: 'https://pixgrab.com/nl',
+    locale: 'nl_NL',
   },
   alternates: {
-    canonical: 'https://pixgrab.com/en',
+    canonical: 'https://pixgrab.com/nl',
     languages: {
       'en': 'https://pixgrab.com/en',
       'fr': 'https://pixgrab.com/fr',
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function EnglishLayout({ children }: { children: React.ReactNode }) {
+export default function DutchLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="nl">
       <body>{children}</body>
     </html>
   );

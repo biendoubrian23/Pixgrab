@@ -35,6 +35,47 @@ export function detectPlatform(url: string): Platform {
       return 'twitter';
     }
 
+    // TikTok
+    if (
+      hostname.includes('tiktok.com') ||
+      hostname.includes('vm.tiktok.com')
+    ) {
+      return 'tiktok';
+    }
+
+    // Instagram
+    if (
+      hostname.includes('instagram.com') ||
+      hostname.includes('instagr.am')
+    ) {
+      return 'instagram';
+    }
+
+    // YouTube
+    if (
+      hostname.includes('youtube.com') ||
+      hostname.includes('youtu.be') ||
+      hostname.includes('youtube-nocookie.com')
+    ) {
+      return 'youtube';
+    }
+
+    // Facebook
+    if (
+      hostname.includes('facebook.com') ||
+      hostname.includes('fb.com') ||
+      hostname.includes('fb.watch')
+    ) {
+      return 'facebook';
+    }
+
+    // Threads
+    if (
+      hostname.includes('threads.net')
+    ) {
+      return 'threads';
+    }
+
     return 'unknown';
   } catch {
     return 'unknown';

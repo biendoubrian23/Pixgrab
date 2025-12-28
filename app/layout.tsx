@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    alternateLocale: 'fr_FR',
+    alternateLocale: ['fr_FR', 'es_ES', 'pt_BR', 'it_IT', 'de_DE', 'nl_NL'],
     url: 'https://pixgrab.com',
     siteName: 'Pixgrab',
     title: 'Pixgrab - Download Pinterest, Reddit & X Media',
