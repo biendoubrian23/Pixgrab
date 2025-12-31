@@ -1,15 +1,21 @@
-// Rate limiter simple basé sur IP
+// Rate limiter avancé basé sur IP
 // Stockage en mémoire (reset au redémarrage du serveur)
+// Pour la production, utiliser Redis
 
 interface RateLimitEntry {
   count: number;
   resetAt: number;
+  blocked: boolean;
+  blockUntil?: number;
 }
 
 const rateLimitStore = new Map<string, RateLimitEntry>();
 
+// Configuration
 const WINDOW_MS = 60 * 1000; // 1 minute
-const MAX_REQUESTS = 30; // 30 requêtes par minute
+const MAX_REQUESTS = 20; // 20 requêtes par minute (réduit pour plus de sécurité)
+const BLOCK_DURATION_MS = 5 * 60 * 1000; // 5 minutes de blocage si abus
+const ABUSE_THRESHOLD = 50; // Si > 50 requêtes en 1 min, blocage temporaire
 
 /**
  * Vérifie si une IP est rate-limitée
@@ -28,11 +34,21 @@ export function checkRateLimit(ip: string): {
     cleanupExpiredEntries();
   }
 
+  // Vérifier si l'IP est bloquée
+  if (entry?.blocked && entry.blockUntil && entry.blockUntil > now) {
+    return {
+      allowed: false,
+      remaining: 0,
+      resetIn: entry.blockUntil - now,
+    };
+  }
+
   // Si pas d'entrée ou entrée expirée, créer une nouvelle
   if (!entry || entry.resetAt < now) {
     rateLimitStore.set(ip, {
       count: 1,
       resetAt: now + WINDOW_MS,
+      blocked: false,
     });
     return {
       allowed: true,
@@ -44,7 +60,19 @@ export function checkRateLimit(ip: string): {
   // Incrémenter le compteur
   entry.count++;
 
-  // Vérifier la limite
+  // Détecter les abus et bloquer
+  if (entry.count > ABUSE_THRESHOLD) {
+    entry.blocked = true;
+    entry.blockUntil = now + BLOCK_DURATION_MS;
+    console.warn(`IP blocked for abuse: ${ip.substring(0, 10)}... (${entry.count} requests)`);
+    return {
+      allowed: false,
+      remaining: 0,
+      resetIn: BLOCK_DURATION_MS,
+    };
+  }
+
+  // Vérifier la limite normale
   if (entry.count > MAX_REQUESTS) {
     return {
       allowed: false,

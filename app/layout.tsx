@@ -18,6 +18,10 @@ export const metadata: Metadata = {
     'x video downloader',
     'save pinterest images',
     'pinterest video saver',
+    'reddit video with sound',
+    'twitter media download',
+    'pinterest hd download',
+    'free video downloader',
   ],
   authors: [{ name: 'Pixgrab' }],
   creator: 'Pixgrab',
@@ -55,6 +59,8 @@ export const metadata: Metadata = {
     title: 'Pixgrab - Download Pinterest, Reddit & X Media',
     description: 'Download photos and videos in original quality. No login. No watermark.',
     images: ['/og-image.png'],
+    creator: '@pixgrab',
+    site: '@pixgrab',
   },
   manifest: '/manifest.json',
   icons: {
@@ -66,6 +72,12 @@ export const metadata: Metadata = {
     languages: {
       'en': 'https://pixgrab.com/en',
       'fr': 'https://pixgrab.com/fr',
+      'es': 'https://pixgrab.com/es',
+      'pt': 'https://pixgrab.com/pt',
+      'it': 'https://pixgrab.com/it',
+      'de': 'https://pixgrab.com/de',
+      'nl': 'https://pixgrab.com/nl',
+      'x-default': 'https://pixgrab.com',
     },
   },
 };
@@ -91,12 +103,12 @@ export default function RootLayout({
         <link rel="preconnect" href="https://i.pinimg.com" />
         <link rel="preconnect" href="https://v.redd.it" />
         <link rel="preconnect" href="https://pbs.twimg.com" />
-        
+
         {/* DNS prefetch pour CDNs */}
         <link rel="dns-prefetch" href="https://i.pinimg.com" />
         <link rel="dns-prefetch" href="https://v.redd.it" />
         <link rel="dns-prefetch" href="https://video.twimg.com" />
-        
+
         <script
           dangerouslySetInnerHTML={{
             __html: `

@@ -1,21 +1,38 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-const locales = ['en', 'fr'];
+// 7 langues supportées
+const locales = ['en', 'fr', 'es', 'pt', 'it', 'de', 'nl'];
 const defaultLocale = 'en';
+const LOCALE_COOKIE = 'PIXGRAB_LOCALE';
 
 function getLocale(request: NextRequest): string {
-  // Vérifier le header Accept-Language
+  // 1. Vérifier le cookie de préférence utilisateur
+  const cookieLocale = request.cookies.get(LOCALE_COOKIE)?.value;
+  if (cookieLocale && locales.includes(cookieLocale)) {
+    return cookieLocale;
+  }
+
+  // 2. Vérifier le header Accept-Language du navigateur
   const acceptLanguage = request.headers.get('accept-language');
   
   if (acceptLanguage) {
-    const preferredLocale = acceptLanguage
+    // Parser Accept-Language et trouver la meilleure correspondance
+    const languages = acceptLanguage
       .split(',')
-      .map(lang => lang.split(';')[0].trim().substring(0, 2).toLowerCase())
-      .find(lang => locales.includes(lang));
+      .map(lang => {
+        const [code, qValue] = lang.trim().split(';q=');
+        return {
+          code: code.substring(0, 2).toLowerCase(),
+          quality: qValue ? parseFloat(qValue) : 1.0
+        };
+      })
+      .sort((a, b) => b.quality - a.quality);
     
-    if (preferredLocale) {
-      return preferredLocale;
+    for (const lang of languages) {
+      if (locales.includes(lang.code)) {
+        return lang.code;
+      }
     }
   }
   
@@ -45,12 +62,30 @@ export function middleware(request: NextRequest) {
   );
   
   if (pathnameHasLocale) {
-    return NextResponse.next();
+    // Extraire le locale du path et sauvegarder en cookie
+    const currentLocale = pathname.split('/')[1];
+    const response = NextResponse.next();
+    response.cookies.set(LOCALE_COOKIE, currentLocale, {
+      maxAge: 60 * 60 * 24 * 365, // 1 an
+      path: '/',
+      sameSite: 'lax'
+    });
+    return response;
   }
   
-  // Pour la page d'accueil sans locale, ne pas rediriger (version par défaut EN)
-  // Cela permet d'avoir / comme page principale et /fr comme version française
-  return NextResponse.next();
+  // Pour la page d'accueil sans locale, rediriger vers la langue détectée
+  const locale = getLocale(request);
+  const url = request.nextUrl.clone();
+  url.pathname = `/${locale}${pathname}`;
+  
+  const response = NextResponse.redirect(url);
+  response.cookies.set(LOCALE_COOKIE, locale, {
+    maxAge: 60 * 60 * 24 * 365, // 1 an
+    path: '/',
+    sameSite: 'lax'
+  });
+  
+  return response;
 }
 
 export const config = {

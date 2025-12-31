@@ -1,23 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { detectPlatform, isValidUrl, cleanUrl } from '@/lib/urlParser';
+import { detectPlatform } from '@/lib/urlParser';
+import { validateAndSanitizeUrl, sanitizeFilename } from '@/lib/security';
 import { extractPinterestMedia } from '@/lib/scrapers/pinterest';
 import { extractRedditMedia } from '@/lib/scrapers/reddit';
 import { extractTwitterMedia } from '@/lib/scrapers/twitter';
-import { extractTikTokMedia } from '@/lib/scrapers/tiktok';
-import { extractInstagramMedia } from '@/lib/scrapers/instagram';
-import { extractYouTubeMedia } from '@/lib/scrapers/youtube';
-import { extractFacebookMedia } from '@/lib/scrapers/facebook';
-import { extractThreadsMedia } from '@/lib/scrapers/threads';
 import { checkRateLimit, getClientIp } from '@/lib/rateLimit';
 import { DownloadResponse } from '@/types';
 
+// Timeout pour les requêtes externes (10 secondes)
+const SCRAPE_TIMEOUT = 10000;
+
 export async function POST(request: NextRequest) {
+  const startTime = Date.now();
+  
   try {
     // Rate limiting
     const clientIp = getClientIp(request);
     const rateLimitResult = checkRateLimit(clientIp);
 
     if (!rateLimitResult.allowed) {
+      console.warn(`Rate limit exceeded for IP: ${clientIp.substring(0, 10)}...`);
       return NextResponse.json<DownloadResponse>(
         {
           success: false,
@@ -28,41 +30,53 @@ export async function POST(request: NextRequest) {
           headers: {
             'X-RateLimit-Remaining': '0',
             'X-RateLimit-Reset': String(Math.ceil(rateLimitResult.resetIn / 1000)),
+            'Retry-After': String(Math.ceil(rateLimitResult.resetIn / 1000)),
           },
         }
       );
     }
 
-    // Parse le body
-    const body = await request.json();
+    // Parse le body avec protection contre les payloads volumineux
+    let body;
+    try {
+      const text = await request.text();
+      if (text.length > 4096) {
+        return NextResponse.json<DownloadResponse>(
+          { success: false, error: 'Request too large' },
+          { status: 413 }
+        );
+      }
+      body = JSON.parse(text);
+    } catch {
+      return NextResponse.json<DownloadResponse>(
+        { success: false, error: 'Invalid JSON' },
+        { status: 400 }
+      );
+    }
+
     const { url } = body;
 
-    // Validation de l'URL
+    // Validation de l'URL avec sanitisation
     if (!url || typeof url !== 'string') {
       return NextResponse.json<DownloadResponse>(
-        {
-          success: false,
-          error: 'Please provide a valid URL',
-        },
+        { success: false, error: 'Please provide a valid URL' },
         { status: 400 }
       );
     }
 
-    if (!isValidUrl(url)) {
+    // Validation et sanitisation sécurisée
+    const validation = validateAndSanitizeUrl(url);
+    if (!validation.valid || !validation.url) {
       return NextResponse.json<DownloadResponse>(
-        {
-          success: false,
-          error: 'Please enter a valid URL',
-        },
+        { success: false, error: validation.error || 'Invalid URL' },
         { status: 400 }
       );
     }
 
-    // Nettoyer l'URL
-    const cleanedUrl = cleanUrl(url);
+    const sanitizedUrl = validation.url;
 
     // Détecter la plateforme
-    const platform = detectPlatform(cleanedUrl);
+    const platform = detectPlatform(sanitizedUrl);
 
     if (platform === 'unknown') {
       return NextResponse.json<DownloadResponse>(
@@ -86,19 +100,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Extraire le média selon la plateforme
+    // Extraire le média avec timeout
     let result = null;
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), SCRAPE_TIMEOUT);
 
-    switch (platform) {
-      case 'pinterest':
-        result = await extractPinterestMedia(cleanedUrl);
-        break;
-      case 'reddit':
-        result = await extractRedditMedia(cleanedUrl);
-        break;
-      case 'twitter':
-        result = await extractTwitterMedia(cleanedUrl);
-        break;
+    try {
+      switch (platform) {
+        case 'pinterest':
+          result = await extractPinterestMedia(sanitizedUrl);
+          break;
+        case 'reddit':
+          result = await extractRedditMedia(sanitizedUrl);
+          break;
+        case 'twitter':
+          result = await extractTwitterMedia(sanitizedUrl);
+          break;
+      }
+    } finally {
+      clearTimeout(timeoutId);
     }
 
     if (!result) {
@@ -111,6 +131,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Sanitiser le nom de fichier dans le résultat
+    if (result.filename) {
+      result.filename = sanitizeFilename(result.filename);
+    }
+
+    // Log pour monitoring (sans données sensibles)
+    console.log(`Download success: platform=${platform}, duration=${Date.now() - startTime}ms`);
+
     return NextResponse.json<DownloadResponse>(
       {
         success: true,
@@ -119,11 +147,12 @@ export async function POST(request: NextRequest) {
       {
         headers: {
           'X-RateLimit-Remaining': String(rateLimitResult.remaining),
+          'Cache-Control': 'no-store, no-cache, must-revalidate',
         },
       }
     );
   } catch (error) {
-    console.error('Download API error:', error);
+    console.error('Download API error:', error instanceof Error ? error.message : 'Unknown error');
     
     return NextResponse.json<DownloadResponse>(
       {
